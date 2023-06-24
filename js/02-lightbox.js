@@ -1,6 +1,10 @@
 import { galleryItems } from './gallery-items.js';
 
-// Change code below this line
+const lightboxCSS = document.createElement('link');
+lightboxCSS.rel = 'stylesheet';
+lightboxCSS.href = 'https://cdn.jsdelivr.net/npm/simplelightbox@2.7.0/dist/simple-lightbox.min.css';
+document.head.appendChild(lightboxCSS);
+
 const gallery = document.querySelector('.gallery');
 
 function createGalleryItem(item) {
@@ -25,10 +29,16 @@ function createGalleryItem(item) {
 const galleryItemsMarkup = galleryItems.map(createGalleryItem);
 gallery.append(...galleryItemsMarkup);
 
-document.addEventListener('DOMContentLoaded', function () {
-  new SimpleLightbox('.gallery a', {
+const lightboxScript = document.createElement('script');
+lightboxScript.src = 'https://cdn.jsdelivr.net/npm/simplelightbox@2.7.0/dist/simple-lightbox.min.js';
+lightboxScript.defer = true;
+document.body.appendChild(lightboxScript);
+
+lightboxScript.addEventListener('load', function () {
+  const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
     captionsPosition: 'bottom',
+    animationSpeed: 250,
   });
 });
