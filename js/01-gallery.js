@@ -23,12 +23,10 @@ galleryList.addEventListener('click', event => {
   if (event.target.classList.contains('gallery__image')) {
 const imageUrl = event.target.parentNode.getAttribute('href');
     const imageAlt = event.target.getAttribute('alt');
-    const imageDescription = event.target.getAttribute('data-description');
 
     const instance = basicLightbox.create(`
   <img src="${imageUrl}" alt="${imageAlt}" style="width: 90%; height: 90%;  display: block;
   margin: auto;" />
-  <p>${imageDescription}</p>
 `);
 
     instance.show();
